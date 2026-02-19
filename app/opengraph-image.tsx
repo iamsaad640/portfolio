@@ -14,39 +14,14 @@ export default async function Image() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: "space-between",
           padding: "80px",
-          background: "linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%)",
+          background: "#0a0a0a",
           fontFamily: "system-ui, sans-serif",
           position: "relative",
-          overflow: "hidden",
         }}
       >
-        {/* Gradient orbs */}
-        <div
-          style={{
-            position: "absolute",
-            top: "-100px",
-            right: "-100px",
-            width: "400px",
-            height: "400px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: "-80px",
-            left: "-80px",
-            width: "350px",
-            height: "350px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, transparent 70%)",
-          }}
-        />
-
-        {/* Top bar accent */}
+        {/* Top gradient line */}
         <div
           style={{
             position: "absolute",
@@ -54,23 +29,24 @@ export default async function Image() {
             left: 0,
             right: 0,
             height: "4px",
-            background: "linear-gradient(90deg, #8b5cf6, #06b6d4, #8b5cf6)",
+            background: "linear-gradient(90deg, #8b5cf6, #06b6d4)",
+            display: "flex",
           }}
         />
 
-        {/* Content */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px", position: "relative" }}>
-          {/* Status badge */}
+        {/* Top section */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          {/* Status */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
               gap: "8px",
+              padding: "8px 20px",
               background: "rgba(34, 197, 94, 0.15)",
               border: "1px solid rgba(34, 197, 94, 0.3)",
               borderRadius: "100px",
-              padding: "8px 20px",
-              width: "fit-content",
+              alignSelf: "flex-start",
             }}
           >
             <div
@@ -79,6 +55,7 @@ export default async function Image() {
                 height: "8px",
                 borderRadius: "50%",
                 background: "#22c55e",
+                display: "flex",
               }}
             />
             <span style={{ color: "#4ade80", fontSize: "16px", fontWeight: 500 }}>
@@ -87,97 +64,93 @@ export default async function Image() {
           </div>
 
           {/* Name */}
-          <h1
+          <div
             style={{
               fontSize: "72px",
               fontWeight: 800,
-              background: "linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #06b6d4 100%)",
-              backgroundClip: "text",
-              color: "transparent",
-              margin: 0,
+              color: "#ffffff",
               lineHeight: 1.1,
               letterSpacing: "-2px",
+              display: "flex",
             }}
           >
             Saad Ahmed
-          </h1>
+          </div>
 
           {/* Title */}
-          <p
+          <div
             style={{
               fontSize: "28px",
-              color: "#94a3b8",
-              margin: 0,
-              fontWeight: 500,
+              color: "#8b5cf6",
+              fontWeight: 600,
+              display: "flex",
             }}
           >
             Software Engineer
-          </p>
+          </div>
 
           {/* Tagline */}
-          <p
+          <div
             style={{
               fontSize: "20px",
               color: "#64748b",
-              margin: 0,
-              maxWidth: "600px",
               lineHeight: 1.5,
+              display: "flex",
             }}
           >
             Shipping AI-native products & scalable full-stack systems
-          </p>
-
-          {/* Tech tags */}
-          <div style={{ display: "flex", gap: "10px", marginTop: "12px", flexWrap: "wrap" }}>
-            {["Next.js", "TypeScript", "Python", "LangChain", "PostgreSQL"].map((tech) => (
-              <div
-                key={tech}
-                style={{
-                  padding: "6px 16px",
-                  borderRadius: "8px",
-                  background: "rgba(255, 255, 255, 0.06)",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
-                  color: "#cbd5e1",
-                  fontSize: "15px",
-                  fontWeight: 500,
-                }}
-              >
-                {tech}
-              </div>
-            ))}
           </div>
         </div>
 
-        {/* Domain */}
+        {/* Bottom section */}
         <div
           style={{
-            position: "absolute",
-            bottom: "40px",
-            right: "80px",
             display: "flex",
             alignItems: "center",
-            gap: "12px",
+            justifyContent: "space-between",
           }}
         >
-          <div
-            style={{
-              width: "36px",
-              height: "36px",
-              borderRadius: "10px",
-              background: "linear-gradient(135deg, #8b5cf6, #06b6d4)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#ffffff",
-              fontSize: "18px",
-              fontWeight: 800,
-            }}
-          >
-            S
+          {/* Tech tags */}
+          <div style={{ display: "flex", gap: "10px" }}>
+            <div style={{ padding: "6px 16px", borderRadius: "8px", background: "rgba(255, 255, 255, 0.06)", border: "1px solid rgba(255, 255, 255, 0.1)", color: "#cbd5e1", fontSize: "15px", fontWeight: 500, display: "flex" }}>
+              Next.js
+            </div>
+            <div style={{ padding: "6px 16px", borderRadius: "8px", background: "rgba(255, 255, 255, 0.06)", border: "1px solid rgba(255, 255, 255, 0.1)", color: "#cbd5e1", fontSize: "15px", fontWeight: 500, display: "flex" }}>
+              TypeScript
+            </div>
+            <div style={{ padding: "6px 16px", borderRadius: "8px", background: "rgba(255, 255, 255, 0.06)", border: "1px solid rgba(255, 255, 255, 0.1)", color: "#cbd5e1", fontSize: "15px", fontWeight: 500, display: "flex" }}>
+              Python
+            </div>
+            <div style={{ padding: "6px 16px", borderRadius: "8px", background: "rgba(255, 255, 255, 0.06)", border: "1px solid rgba(255, 255, 255, 0.1)", color: "#cbd5e1", fontSize: "15px", fontWeight: 500, display: "flex" }}>
+              LangChain
+            </div>
+            <div style={{ padding: "6px 16px", borderRadius: "8px", background: "rgba(255, 255, 255, 0.06)", border: "1px solid rgba(255, 255, 255, 0.1)", color: "#cbd5e1", fontSize: "15px", fontWeight: 500, display: "flex" }}>
+              PostgreSQL
+            </div>
           </div>
-          <span style={{ color: "#94a3b8", fontSize: "20px", fontWeight: 600 }}>
-            saad.run
-          </span>
+
+          {/* Domain */}
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div
+              style={{
+                width: "36px",
+                height: "36px",
+                borderRadius: "10px",
+                background: "linear-gradient(135deg, #8b5cf6, #06b6d4)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#ffffff",
+                fontSize: "18px",
+                fontWeight: 800,
+              }}
+            >
+              S
+            </div>
+            <span style={{ color: "#94a3b8", fontSize: "20px", fontWeight: 600 }}>
+              saad.run
+            </span>
+          </div>
         </div>
       </div>
     ),
