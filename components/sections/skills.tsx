@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { skills } from "@/lib/data";
-import { Zap, Wrench, Clock, PenLine, BookOpen } from "lucide-react";
+import { Zap, Wrench, Clock, BookOpen } from "lucide-react";
 import {
   SiReact,
   SiNextdotjs,
@@ -247,11 +247,10 @@ export function SkillsSection() {
         </div>
 
         {/* Fun Stats */}
-        <div className="mt-10 md:mt-16 grid grid-cols-4 gap-2 md:gap-4">
+        <div className="mt-10 md:mt-16 grid grid-cols-3 gap-2 md:gap-4">
           {[
             { value: "20+", label: "Technologies", Icon: Wrench },
             { value: "3+", label: "Years Coding", Icon: Clock },
-            { value: "1M+", label: "Lines Written", Icon: PenLine },
             { value: "∞", label: "Learning", Icon: BookOpen },
           ].map((stat) => (
             <div
