@@ -14,6 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/icon.svg",
+  },
   title: "Saad Ahmed | Software Engineer",
   description:
     "Full-stack software engineer specializing in building exceptional digital experiences. Explore my portfolio showcasing innovative projects and technical expertise.",

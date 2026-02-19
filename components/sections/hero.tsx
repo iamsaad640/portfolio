@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { personalInfo, stats } from "@/lib/data";
 import {
@@ -145,11 +146,14 @@ export function HeroSection() {
               {/* Avatar */}
               <div className="relative mb-6 z-10">
                 <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-accent p-[3px] pulse-glow">
-                  <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
-                    <span className="text-3xl font-bold gradient-text">
-                      {personalInfo.name.split(" ").map((n) => n[0]).join("")}
-                    </span>
-                  </div>
+                  <Image
+                    src="/saad-pic.jpeg"
+                    alt={personalInfo.name}
+                    width={96}
+                    height={96}
+                    className="w-full h-full rounded-full object-cover"
+                    priority
+                  />
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-green-500 border-4 border-background flex items-center justify-center">
                   <Sparkles className="w-3 h-3 text-white" />
@@ -303,11 +307,14 @@ export function HeroSection() {
           >
             <div className="relative">
               <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-primary to-accent p-[3px] pulse-glow">
-                <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
-                  <span className="text-4xl md:text-5xl font-bold gradient-text">
-                    {personalInfo.name.split(" ").map((n) => n[0]).join("")}
-                  </span>
-                </div>
+                <Image
+                  src="/saad-pic.jpeg"
+                  alt={personalInfo.name}
+                  width={128}
+                  height={128}
+                  className="w-full h-full rounded-full object-cover"
+                  priority
+                />
               </div>
               <div className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-green-500 border-4 border-background flex items-center justify-center">
                 <Sparkles className="w-4 h-4 text-white" />
