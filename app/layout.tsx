@@ -14,37 +14,50 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://saad.run"),
   icons: {
     icon: "/icon.svg",
   },
   title: "Saad Ahmed | Software Engineer",
   description:
-    "Full-stack software engineer specializing in building exceptional digital experiences. Explore my portfolio showcasing innovative projects and technical expertise.",
+    "Software Engineer building AI-native products and scalable full-stack systems. Specializing in Next.js, TypeScript, Python, LangChain, and production-grade AI platforms.",
   keywords: [
+    "Saad Ahmed",
     "Software Engineer",
     "Full Stack Developer",
+    "AI Engineer",
     "React",
     "Next.js",
     "TypeScript",
+    "Python",
+    "LangChain",
     "Portfolio",
   ],
-  authors: [{ name: "Saad Ahmed" }],
+  authors: [{ name: "Saad Ahmed", url: "https://saad.run" }],
+  creator: "Saad Ahmed",
   openGraph: {
-    title: "Saad Ahmed | Software Engineer",
+    title: "Saad Ahmed — Software Engineer",
     description:
-      "Full-stack software engineer specializing in building exceptional digital experiences.",
+      "Shipping AI-native products & scalable full-stack systems. Next.js, TypeScript, Python, LangChain.",
+    url: "https://saad.run",
+    siteName: "Saad Ahmed",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saad Ahmed | Software Engineer",
+    title: "Saad Ahmed — Software Engineer",
     description:
-      "Full-stack software engineer specializing in building exceptional digital experiences.",
+      "Shipping AI-native products & scalable full-stack systems.",
+    creator: "@saadsolves",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 
