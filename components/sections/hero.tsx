@@ -363,9 +363,8 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground">
-        <span className="text-xs uppercase tracking-widest">Scroll to explore</span>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center text-muted-foreground">
         <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
           <div className="w-1 h-2 rounded-full bg-primary animate-bounce" />
         </div>

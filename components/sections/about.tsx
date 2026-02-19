@@ -147,10 +147,10 @@ function BioSection() {
         {/* Fun facts */}
         <div className="grid grid-cols-4 gap-2 pt-4">
           {[
-            { emoji: "🎮", label: "Gamer" },
-            { emoji: "📚", label: "Reader" },
-            { emoji: "🏃", label: "Runner" },
-            { emoji: "☕", label: "Coffee" },
+            { emoji: "🏸", label: "Badminton" },
+            { emoji: "🏏", label: "Cricket" },
+            { emoji: "🎙️", label: "Podcasts" },
+            { emoji: "🍕", label: "Pizza" },
           ].map((fact) => (
             <div
               key={fact.label}
@@ -277,10 +277,10 @@ function BioContent() {
       ))}
       <div className="grid grid-cols-4 gap-2 pt-4">
         {[
-          { emoji: "🎮", label: "Gamer" },
-          { emoji: "📚", label: "Reader" },
-          { emoji: "🏃", label: "Runner" },
-          { emoji: "☕", label: "Coffee" },
+          { emoji: "🏸", label: "Badminton" },
+          { emoji: "🏏", label: "Cricket" },
+          { emoji: "🎙️", label: "Podcasts" },
+          { emoji: "🍕", label: "Pizza" },
         ].map((fact) => (
           <div
             key={fact.label}
