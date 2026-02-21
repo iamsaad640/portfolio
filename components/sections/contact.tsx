@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getCalApi } from "@calcom/embed-react";
 import { cn } from "@/lib/utils";
 import { personalInfo } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -130,6 +131,16 @@ function ContactForm() {
 }
 
 function ContactInfoCard() {
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi();
+      cal("ui", {
+        theme: "dark",
+        styles: { branding: { brandColor: "#8b5cf6" } },
+      });
+    })();
+  }, []);
+
   const contactMethods = [
     {
       icon: Mail,
@@ -198,7 +209,8 @@ function ContactInfoCard() {
       {/* Quick Actions */}
       <div className="grid grid-cols-1 gap-4">
         <button
-          onClick={() => document.getElementById("name")?.focus()}
+          data-cal-link="saadsolves/30min"
+          data-cal-config='{"layout":"month_view","theme":"dark"}'
           className="glass rounded-xl p-4 flex flex-col items-center gap-2 hover:bg-white/5 transition-colors cursor-pointer"
         >
           <Calendar className="w-6 h-6 text-blue-400" />
