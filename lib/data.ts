@@ -276,8 +276,8 @@ export const experiences = [
     companyUrl: "https://pitb.gov.pk/",
     location: "On-site, Gujrat",
     type: "Full-time",
-    startDate: "2023-03",
-    endDate: "2023-12",
+    startDate: "2023-05",
+    endDate: "2023-10",
     description: `First professional role in a government-backed incubator environment — building and shipping real products for startup teams.`,
     highlights: [
       "Developed and deployed a production website for a startup incubated under the National Expansion Plan",

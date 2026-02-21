@@ -32,9 +32,10 @@ function formatDate(dateStr: string | null): string {
 function calculateDuration(startDate: string, endDate: string | null): string {
   const start = new Date(startDate);
   const end = endDate ? new Date(endDate) : new Date();
-  const months = Math.round(
-    (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 30)
-  );
+  const months =
+    (end.getFullYear() - start.getFullYear()) * 12 +
+    (end.getMonth() - start.getMonth()) +
+    1;
   const years = Math.floor(months / 12);
   const remainingMonths = months % 12;
 
