@@ -174,16 +174,16 @@ function FeaturedProjectCard({
 
           {/* Stats */}
           {project.stats && (
-            <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6">
               {Object.entries(project.stats).map(([key, value], i) => (
                 <div
                   key={key}
-                  className="text-center p-3 rounded-xl bg-background/50 backdrop-blur-sm"
+                  className="text-center p-2 md:p-3 rounded-xl bg-background/50 backdrop-blur-sm"
                 >
-                  <p className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  <p className="text-sm md:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
                     {value}
                   </p>
-                  <p className="text-xs text-muted-foreground capitalize mt-1">{key}</p>
+                  <p className="text-[10px] md:text-xs text-muted-foreground capitalize mt-1">{key}</p>
                 </div>
               ))}
             </div>
@@ -367,15 +367,15 @@ function ProjectModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto bg-card/95 backdrop-blur-xl border-border/50">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-card/95 backdrop-blur-xl border-border/50 p-4 md:p-6">
         <DialogHeader>
-          <div className="flex items-center gap-4 mb-2">
-            <div className="p-3 rounded-2xl bg-primary/10">
-              {(() => { const Icon = projectIcons[project.id] || Briefcase; return <Icon className="w-10 h-10 text-primary" />; })()}
+          <div className="flex items-center gap-3 md:gap-4 mb-2">
+            <div className="p-2 md:p-3 rounded-xl md:rounded-2xl bg-primary/10 shrink-0">
+              {(() => { const Icon = projectIcons[project.id] || Briefcase; return <Icon className="w-7 h-7 md:w-10 md:h-10 text-primary" />; })()}
             </div>
             <div>
-              <DialogTitle className="text-2xl">{project.title}</DialogTitle>
-              <DialogDescription className="mt-1">
+              <DialogTitle className="text-lg md:text-2xl">{project.title}</DialogTitle>
+              <DialogDescription className="mt-1 text-xs md:text-sm">
                 {project.description}
               </DialogDescription>
             </div>
@@ -385,30 +385,30 @@ function ProjectModal({
         {/* Preview Area */}
         <div
           className={cn(
-            "relative aspect-video rounded-xl overflow-hidden mb-6",
+            "relative aspect-video rounded-xl overflow-hidden mb-4 md:mb-6",
             "bg-gradient-to-br",
             projectGradients[project.id] || projectGradients[1]
           )}
         >
           <div className="absolute inset-0 flex items-center justify-center">
-            {(() => { const Icon = projectIcons[project.id] || Briefcase; return <Icon className="w-20 h-20 text-primary/30" />; })()}
+            {(() => { const Icon = projectIcons[project.id] || Briefcase; return <Icon className="w-16 h-16 md:w-20 md:h-20 text-primary/30" />; })()}
           </div>
         </div>
 
         {/* Stats */}
         {project.stats && (
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-3 gap-2 md:gap-4 mb-4 md:mb-6">
             {Object.entries(project.stats).map(([key, value], i) => {
               const icons = [Users, TrendingUp, Zap];
               const Icon = icons[i % icons.length];
               return (
                 <div
                   key={key}
-                  className="text-center p-4 rounded-xl bg-background/50 border border-border/50"
+                  className="text-center p-2 md:p-4 rounded-xl bg-background/50 border border-border/50"
                 >
-                  <Icon className="w-5 h-5 mx-auto mb-2 text-primary" />
-                  <p className="text-xl font-bold">{value}</p>
-                  <p className="text-xs text-muted-foreground capitalize">{key}</p>
+                  <Icon className="w-4 h-4 md:w-5 md:h-5 mx-auto mb-1 md:mb-2 text-primary" />
+                  <p className="text-sm md:text-xl font-bold leading-tight">{value}</p>
+                  <p className="text-[10px] md:text-xs text-muted-foreground capitalize">{key}</p>
                 </div>
               );
             })}
@@ -425,14 +425,14 @@ function ProjectModal({
         </div>
 
         {/* Technologies */}
-        <div className="mb-6">
+        <div className="mb-4 md:mb-6">
           <h4 className="text-sm font-semibold mb-3 flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             Built With
           </h4>
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="rounded-full">
+              <Badge key={tag} variant="secondary" className="rounded-full bg-secondary/80 text-foreground border border-border/50">
                 {tag}
               </Badge>
             ))}

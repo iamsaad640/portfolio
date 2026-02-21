@@ -90,7 +90,7 @@ function ExperienceCard({
       {/* Timeline node */}
       <div
         className={cn(
-          "absolute left-0 top-6 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300",
+          "absolute left-0 top-6 w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300",
           isCurrent
             ? "bg-primary pulse-glow"
             : isActive
@@ -98,22 +98,22 @@ function ExperienceCard({
             : "bg-secondary border border-primary/30"
         )}
       >
-        <Briefcase className="w-5 h-5" />
+        <Briefcase className="w-3.5 h-3.5 md:w-5 md:h-5" />
       </div>
 
       {/* Card */}
       <div
         className={cn(
-          "ml-20 glass rounded-2xl overflow-hidden cursor-pointer transition-all duration-300",
+          "ml-12 md:ml-20 glass rounded-2xl overflow-hidden cursor-pointer transition-all duration-300",
           isActive && "ring-2 ring-primary/50 bg-white/5"
         )}
         onClick={onClick}
       >
         {/* Header */}
-        <div className="p-6 pb-4">
+        <div className="p-4 md:p-6 pb-4">
           <div className="flex items-start justify-between mb-2">
-            <div>
-              <h3 className="text-xl font-bold">{experience.role}</h3>
+            <div className="min-w-0 flex-1">
+              <h3 className="text-base md:text-xl font-bold">{experience.role}</h3>
               <div className="flex items-center gap-2 mt-1">
                 <a
                   href={experience.companyUrl}
@@ -135,7 +135,7 @@ function ExperienceCard({
             )}
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mt-3">
+          <div className="flex flex-wrap items-center gap-2 md:gap-4 text-xs md:text-sm text-muted-foreground mt-3">
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
               <span>
@@ -251,7 +251,7 @@ export function ExperienceSection() {
           {/* Timeline */}
           <div className="lg:col-span-2 relative">
             {/* Main timeline line - positioned outside cards */}
-            <div className="absolute left-6 top-6 bottom-6 w-[2px] bg-gradient-to-b from-primary via-accent/50 to-transparent" />
+            <div className="absolute left-[15px] md:left-6 top-6 bottom-6 w-[2px] bg-gradient-to-b from-primary via-accent/50 to-transparent" />
 
             <div className="space-y-8">
               {experiences.map((exp, index) => (

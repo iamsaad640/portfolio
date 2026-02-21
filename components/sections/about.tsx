@@ -184,7 +184,7 @@ function EducationSection() {
             <p className="font-semibold">{edu.degree}</p>
             <p className="text-sm text-muted-foreground">{edu.school}</p>
             <p className="text-xs text-muted-foreground mt-1">
-              {edu.startDate} - {edu.endDate} • GPA: {edu.gpa}
+              {edu.startDate} - {edu.endDate}
             </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {edu.highlights.map((highlight) => (
@@ -303,7 +303,7 @@ function EducationContent() {
           <p className="font-semibold">{edu.degree}</p>
           <p className="text-sm text-muted-foreground">{edu.school}</p>
           <p className="text-xs text-muted-foreground mt-1">
-            {edu.startDate} - {edu.endDate} • GPA: {edu.gpa}
+            {edu.startDate} - {edu.endDate}
           </p>
           <div className="mt-3 flex flex-wrap gap-1.5">
             {edu.highlights.map((highlight) => (
