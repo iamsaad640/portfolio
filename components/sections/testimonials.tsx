@@ -1,12 +1,92 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { testimonials } from "@/lib/data";
+import { testimonials, personalInfo } from "@/lib/data";
 import { motion } from "framer-motion";
-import { Quote, MessageCircle, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Quote,
+  MessageCircle,
+  Star,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { SiFiverr, SiUpwork } from "react-icons/si";
 
-// Folder Card Component with zoom effect
+const countryFlags: Record<string, string> = {
+  "United States": "\u{1F1FA}\u{1F1F8}",
+  Australia: "\u{1F1E6}\u{1F1FA}",
+  France: "\u{1F1EB}\u{1F1F7}",
+  "United Kingdom": "\u{1F1EC}\u{1F1E7}",
+  Ireland: "\u{1F1EE}\u{1F1EA}",
+  "South Africa": "\u{1F1FF}\u{1F1E6}",
+  "United Arab Emirates": "\u{1F1E6}\u{1F1EA}",
+  Sweden: "\u{1F1F8}\u{1F1EA}",
+  Caribbean: "\u{1F334}",
+};
+
+function getFlag(country: string) {
+  return countryFlags[country] || "\u{1F30D}";
+}
+
+function PlatformBadge({ platform, size = "md", variant = "default" }: { platform: "fiverr" | "upwork"; size?: "sm" | "md"; variant?: "default" | "spotlight" }) {
+  const href =
+    platform === "fiverr"
+      ? personalInfo.socials.fiverr
+      : personalInfo.socials.upwork;
+  const Icon = platform === "fiverr" ? SiFiverr : SiUpwork;
+  const label = platform === "fiverr" ? "Fiverr" : "Upwork";
+  const styles = variant === "spotlight"
+    ? "text-white bg-white/20 border-white/30 hover:bg-white/30"
+    : platform === "fiverr"
+      ? "text-[#1DBF73] bg-[#1DBF73]/10 border-[#1DBF73]/20 hover:bg-[#1DBF73]/20"
+      : "text-[#14A800] bg-[#14A800]/10 border-[#14A800]/20 hover:bg-[#14A800]/20";
+  const iconSize = platform === "fiverr"
+    ? (size === "sm" ? "h-5 w-auto" : "h-6 w-auto")
+    : (size === "sm" ? "h-3.5 w-auto" : "h-4 w-auto");
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cn(
+        "inline-flex items-center px-2 py-1 rounded-full border transition-colors",
+        styles
+      )}
+      aria-label={`Verified on ${label}`}
+    >
+      <Icon className={iconSize} />
+    </a>
+  );
+}
+
+function RatingStars({
+  rating,
+  size = "sm",
+}: {
+  rating: number;
+  size?: "sm" | "md";
+}) {
+  const starSize = size === "sm" ? "w-3.5 h-3.5" : "w-4 h-4";
+  return (
+    <div className="flex gap-0.5">
+      {[...Array(5)].map((_, i) => (
+        <Star
+          key={i}
+          className={cn(
+            starSize,
+            i < Math.round(rating)
+              ? "fill-amber-400 text-amber-400"
+              : "text-white/20"
+          )}
+        />
+      ))}
+    </div>
+  );
+}
+
+// Folder Card Component
 function FolderCard({
   testimonial,
   index,
@@ -20,7 +100,6 @@ function FolderCard({
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Staggered colors for folder tabs
   const folderColors = [
     "from-violet-500 to-purple-600",
     "from-blue-500 to-cyan-600",
@@ -45,13 +124,13 @@ function FolderCard({
       {/* Folder Tab */}
       <div
         className={cn(
-          "absolute -top-3 left-4 h-6 rounded-t-lg px-3",
-          "bg-gradient-to-r inline-flex items-center",
+          "absolute -top-3 left-4 z-10 h-6 rounded-t-lg px-3",
+          "bg-gradient-to-r inline-flex items-center gap-1.5",
           color
         )}
       >
         <span className="text-[10px] font-medium text-white/90 uppercase tracking-wider whitespace-nowrap">
-          {testimonial.company}
+          {getFlag(testimonial.country)} {testimonial.country}
         </span>
       </div>
 
@@ -84,15 +163,18 @@ function FolderCard({
         />
 
         <div className="p-6">
-          {/* Quote Icon */}
-          <div
-            className={cn(
-              "w-10 h-10 rounded-xl flex items-center justify-center mb-4",
-              "bg-gradient-to-br",
-              color
-            )}
-          >
-            <Quote className="w-5 h-5 text-white" />
+          {/* Quote Icon + Platform Badge */}
+          <div className="flex items-center justify-between mb-4">
+            <div
+              className={cn(
+                "w-10 h-10 rounded-xl flex items-center justify-center",
+                "bg-gradient-to-br",
+                color
+              )}
+            >
+              <Quote className="w-5 h-5 text-white" />
+            </div>
+            <PlatformBadge platform={testimonial.platform} />
           </div>
 
           {/* Content */}
@@ -111,28 +193,23 @@ function FolderCard({
             >
               <span className="text-sm font-bold text-white">
                 {testimonial.author
-                  ? testimonial.author.split(" ").map((n) => n[0]).join("")
-                  : testimonial.company.split(" ").map((n) => n[0]).join("")}
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")
+                  .toUpperCase()}
               </span>
             </div>
             <div>
-              {testimonial.author && (
-                <p className="font-semibold text-sm">{testimonial.author}</p>
-              )}
+              <p className="font-semibold text-sm">{testimonial.author}</p>
               <p className="text-xs text-muted-foreground">
-                {testimonial.company}
+                {getFlag(testimonial.country)} {testimonial.country}
               </p>
             </div>
           </div>
 
           {/* Rating Stars */}
-          <div className="flex gap-0.5 mt-4">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
-              />
-            ))}
+          <div className="mt-4">
+            <RatingStars rating={testimonial.rating} />
           </div>
         </div>
 
@@ -151,11 +228,9 @@ function FolderCard({
 function ConversationBubble({
   testimonial,
   index,
-  isActive,
 }: {
   testimonial: (typeof testimonials)[0];
   index: number;
-  isActive: boolean;
 }) {
   const isLeft = index % 2 === 0;
 
@@ -193,8 +268,10 @@ function ConversationBubble({
       >
         <span className="text-lg font-bold text-white">
           {testimonial.author
-            ? testimonial.author.split(" ").map((n) => n[0]).join("")
-            : testimonial.company.split(" ").map((n) => n[0]).join("")}
+            .split(" ")
+            .map((n) => n[0])
+            .join("")
+            .toUpperCase()}
         </span>
       </motion.div>
 
@@ -222,8 +299,9 @@ function ConversationBubble({
           <div className="flex items-center gap-2 mb-3">
             <MessageCircle className="w-4 h-4 text-primary" />
             <span className="text-xs text-muted-foreground">
-              {testimonial.company}
+              {getFlag(testimonial.country)} {testimonial.country}
             </span>
+            <PlatformBadge platform={testimonial.platform} />
           </div>
 
           <p className="text-foreground/90 leading-relaxed mb-4">
@@ -232,19 +310,12 @@ function ConversationBubble({
 
           <div className="flex items-center justify-between">
             <div>
-              {testimonial.author && (
-                <p className="font-semibold text-sm">{testimonial.author}</p>
-              )}
-              <p className="text-xs text-muted-foreground">{testimonial.company}</p>
+              <p className="font-semibold text-sm">{testimonial.author}</p>
+              <p className="text-xs text-muted-foreground">
+                {getFlag(testimonial.country)} {testimonial.country}
+              </p>
             </div>
-            <div className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className="w-3 h-3 fill-amber-400 text-amber-400"
-                />
-              ))}
-            </div>
+            <RatingStars rating={testimonial.rating} size="sm" />
           </div>
         </div>
       </motion.div>
@@ -252,8 +323,14 @@ function ConversationBubble({
   );
 }
 
-// Gallery View with Zoom Cards
-function GalleryView({ activeIndex, setActiveIndex }: { activeIndex: number; setActiveIndex: (i: number) => void }) {
+// Gallery View
+function GalleryView({
+  activeIndex,
+  setActiveIndex,
+}: {
+  activeIndex: number;
+  setActiveIndex: (i: number) => void;
+}) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {testimonials.map((testimonial, index) => (
@@ -278,15 +355,20 @@ function ConversationView() {
           key={testimonial.id}
           testimonial={testimonial}
           index={index}
-          isActive={false}
         />
       ))}
     </div>
   );
 }
 
-// Featured Testimonial Spotlight
-function SpotlightView({ activeIndex, setActiveIndex }: { activeIndex: number; setActiveIndex: (i: number) => void }) {
+// Spotlight View
+function SpotlightView({
+  activeIndex,
+  setActiveIndex,
+}: {
+  activeIndex: number;
+  setActiveIndex: (i: number) => void;
+}) {
   const testimonial = testimonials[activeIndex];
 
   const colors = [
@@ -324,8 +406,10 @@ function SpotlightView({ activeIndex, setActiveIndex }: { activeIndex: number; s
             >
               <span className="text-3xl lg:text-4xl font-bold text-white">
                 {testimonial.author
-                  ? testimonial.author.split(" ").map((n) => n[0]).join("")
-                  : testimonial.company.split(" ").map((n) => n[0]).join("")}
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")
+                  .toUpperCase()}
               </span>
             </motion.div>
 
@@ -335,20 +419,28 @@ function SpotlightView({ activeIndex, setActiveIndex }: { activeIndex: number; s
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              {testimonial.author && (
-                <h4 className="text-xl font-bold text-white mb-1">
-                  {testimonial.author}
-                </h4>
-              )}
-              <p className="text-white/80 text-sm">{testimonial.company}</p>
+              <h4 className="text-xl font-bold text-white mb-1">
+                {testimonial.author}
+              </h4>
+              <p className="text-white/80 text-sm">
+                {getFlag(testimonial.country)} {testimonial.country}
+              </p>
 
-              <div className="flex gap-1 justify-center mt-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-4 h-4 fill-white text-white"
-                  />
-                ))}
+              <div className="flex items-center justify-center gap-3 mt-4">
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={cn(
+                        "w-4 h-4",
+                        i < Math.round(testimonial.rating)
+                          ? "fill-white text-white"
+                          : "text-white/30"
+                      )}
+                    />
+                  ))}
+                </div>
+                <PlatformBadge platform={testimonial.platform} variant="spotlight" />
               </div>
             </motion.div>
           </div>
@@ -414,10 +506,15 @@ function SpotlightView({ activeIndex, setActiveIndex }: { activeIndex: number; s
 
 export function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [viewMode, setViewMode] = useState<"gallery" | "conversation" | "spotlight">("gallery");
+  const [viewMode, setViewMode] = useState<
+    "gallery" | "conversation" | "spotlight"
+  >("gallery");
 
   return (
-    <section id="testimonials" className="py-24 md:py-32 px-4 relative overflow-hidden">
+    <section
+      id="testimonials"
+      className="py-24 md:py-32 px-4 relative overflow-hidden"
+    >
       {/* Background Decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 -left-32 w-64 h-64 rounded-full bg-primary/10 blur-3xl" />
@@ -439,9 +536,32 @@ export function TestimonialsSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Client <span className="gradient-text">Testimonials</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Feedback from colleagues and clients I&apos;ve had the pleasure to work with
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
+            Verified reviews from real clients on Fiverr &amp; Upwork
           </p>
+
+          {/* Platform Links */}
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <a
+              href={personalInfo.socials.fiverr}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-[#1DBF73] hover:underline"
+            >
+              <SiFiverr className="h-6 w-auto" />
+              Fiverr Profile
+            </a>
+            <span className="text-white/20">|</span>
+            <a
+              href={personalInfo.socials.upwork}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-[#14A800] hover:underline"
+            >
+              <SiUpwork className="w-4 h-4" />
+              Upwork Profile
+            </a>
+          </div>
 
           {/* View Toggle */}
           <div className="inline-flex gap-2 p-1 rounded-full glass">
@@ -468,11 +588,17 @@ export function TestimonialsSection() {
 
         {/* Content */}
         {viewMode === "gallery" && (
-          <GalleryView activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+          <GalleryView
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
         )}
         {viewMode === "conversation" && <ConversationView />}
         {viewMode === "spotlight" && (
-          <SpotlightView activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+          <SpotlightView
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
         )}
       </div>
     </section>

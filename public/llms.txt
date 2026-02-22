@@ -1,0 +1,46 @@
+# Saad Ahmed — Software Engineer
+
+## About
+Saad Ahmed is a Software Engineer specializing in full-stack development and AI-powered systems. He architects production-grade platforms — from multi-tenant SaaS dashboards to RAG-based conversational agents — using Next.js, TypeScript, Python, and LangChain. His work sits at the intersection of solid engineering and applied AI: building systems that are not just functional, but reliable, maintainable, and designed for scale.
+
+## Location
+Lahore, Pakistan (PKT, UTC+5)
+
+## Skills & Expertise
+
+### Frontend
+- React, Next.js, TypeScript, Tailwind CSS, Material UI
+
+### Backend
+- Node.js, Python, NestJS, FastAPI, Prisma, Express
+
+### AI & LLMs
+- LangChain, LangGraph, OpenAI SDK, RAG Systems, vLLM, AI Agents
+
+### Databases
+- PostgreSQL, MongoDB, MySQL, pgvector, Qdrant
+
+## Notable Projects
+- TopCareersCaribbean: AI-powered job board with intelligent candidate matching and AI agents (Next.js, Express, Prisma, PostgreSQL, OpenAI SDK)
+- AI Chatbot SaaS Platform: Multi-tenant SaaS with embeddable chatbot widget, Stripe billing, and RAG-powered knowledge retrieval (Next.js, FastAPI, LangGraph, pgvector)
+- AI Resume Builder: Action-oriented agent chatbot for resume generation from plain English (Next.js, TypeScript, OpenAI, LangChain)
+- n8n Multi-Tenant AI Backend: Production AI backend with PLLuM, Nomic embeddings, and reranker models (n8n, Python)
+- Human Activity Recognition: Real-time multi-person activity classification at 33 FPS for hospital robotics (Python, PyTorch, TensorRT)
+
+## Experience
+- Software Engineer at Teczon LLC (Jan 2025 – Present): Building AI-native products and full-stack platforms
+- Full Stack Web Developer at Rutal, Inc (Jul 2024 – Dec 2024): Backend architecture and full-stack delivery
+- Web Developer at PITB — NEP/NIC (May 2023 – Oct 2023): Building and shipping products for startup teams
+
+## Education
+- BS Software Engineering, University of Gujrat (2020–2024)
+
+## Links
+- Website: https://saad.run
+- GitHub: https://github.com/iamsaad640
+- LinkedIn: https://www.linkedin.com/in/saadsolves/
+- Fiverr: https://www.fiverr.com/saad_solves
+- Upwork: https://www.upwork.com/freelancers/saadsolves
+
+## Contact
+- Email: iamsaad640@gmail.com

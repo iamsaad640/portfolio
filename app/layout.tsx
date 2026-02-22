@@ -7,11 +7,15 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  fallback: ["system-ui", "arial"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  fallback: ["ui-monospace", "monospace"],
 });
 
 export const metadata: Metadata = {
@@ -36,13 +40,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Saad Ahmed", url: "https://saad.run" }],
   creator: "Saad Ahmed",
+  alternates: {
+    canonical: "https://saad.run",
+  },
+  category: "technology",
   openGraph: {
     title: "Saad Ahmed — Software Engineer",
     description:
       "Shipping AI-native products & scalable full-stack systems. Next.js, TypeScript, Python, LangChain.",
     url: "https://saad.run",
     siteName: "Saad Ahmed",
-    type: "website",
+    type: "profile",
     locale: "en_US",
   },
   twitter: {
@@ -58,6 +66,8 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large" as const,
     },
   },
 };
