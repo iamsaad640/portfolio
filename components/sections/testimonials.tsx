@@ -119,7 +119,7 @@ function FolderCard({
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
+      transition={{ delay: Math.min(index * 0.05, 0.3) }}
     >
       {/* Folder Tab */}
       <div
@@ -255,7 +255,7 @@ function ConversationBubble({
       initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.15 }}
+      transition={{ delay: Math.min(index * 0.05, 0.3) }}
     >
       {/* Avatar */}
       <motion.div
